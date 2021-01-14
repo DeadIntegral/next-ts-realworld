@@ -1,4 +1,4 @@
-import { Author } from './UserTypes'
+import { AuthorType } from './UserTypes'
 export interface articleReadType {
   title: string
   body: string
@@ -7,5 +7,5 @@ export interface articleReadType {
   createdAt: string
   updatedAt: string
   tagList: []
-  author: Author
+  author: AuthorType
 }
