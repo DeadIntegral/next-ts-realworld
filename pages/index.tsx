@@ -1,8 +1,10 @@
 import ArticleList from 'components/article/ArticleList'
 import Banner from 'components/home/Banner'
+import Header from 'components/common/Header'
 
 const IndexPage = () => (
   <>
+    <Header />
     <div className="home-page">
       <Banner />
       <div className="container page">
