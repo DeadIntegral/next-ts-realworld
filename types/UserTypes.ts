@@ -1,6 +1,6 @@
-export interface Author {
+export interface AuthorType {
   bio: string | null
-  following: string
+  following: boolean
   image: string
   username: string
 }
