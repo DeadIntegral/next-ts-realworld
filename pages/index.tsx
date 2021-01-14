@@ -1,10 +1,10 @@
-import Layout from 'components/Layout'
 import ArticleList from 'components/article/ArticleList'
 import Banner from 'components/home/Banner'
+import Header from 'components/common/Header'
 
 const IndexPage = () => (
-  <Layout title="Nextjs TS Realworld">
-    <h1>Next TS Realworld</h1>
+  <>
+    <Header />
     <div className="home-page">
       <Banner />
       <div className="container page">
@@ -16,7 +16,7 @@ const IndexPage = () => (
         </div>
       </div>
     </div>
-  </Layout>
+  </>
 )
 
 export default IndexPage
