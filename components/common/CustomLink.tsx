@@ -5,10 +5,11 @@ interface CustomLink {
   href: string
   as: string
   children: React.ReactNode
+  className?: string
 }
-const CustomLink = ({ href, as, children }: CustomLink) => (
+const CustomLink = ({ href, as, children, className }: CustomLink) => (
   <Link href={href} as={as} passHref>
-    <a>{children}</a>
+    <a className={className || ''}>{children}</a>
   </Link>
 )
 
