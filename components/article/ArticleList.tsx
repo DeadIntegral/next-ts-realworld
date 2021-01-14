@@ -9,7 +9,7 @@ const ArticleList = () => {
 
   if (error) return <div>error</div>
   if (!data) return <div>loading...</div>
-  const { articles, articlesCount } = data
+  const { articles } = data
   return articles.map((article: articleReadType) => <ArticlePreview key={article.slug} article={article} />)
 }
 export default ArticleList
