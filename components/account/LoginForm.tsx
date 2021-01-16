@@ -1,22 +1,19 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Router from 'next/router'
 
 import AuthAPI from 'api/auth'
+import { mutator } from 'utils/mutator'
 
 const LoginForm = () => {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value)
-  }
-  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value)
-  }
+  const handleEmail = useCallback((e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value), [])
+  const handlePassword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value), [])
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
     const { data, status } = await AuthAPI.login(email, password)
     if (status === 200) {
-      console.log(data)
+      mutator(data.user, 'user')
       Router.push('/')
     } else {
     }
