@@ -1,4 +1,4 @@
-import Document, { DocumentContext, Head, Main, NextScript } from 'next/document'
+import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -7,7 +7,7 @@ class MyDocument extends Document {
   }
   render() {
     return (
-      <html>
+      <Html>
         <Head>
           <link rel="stylesheet" href="//demo.productionready.io/main.css" />
           <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
@@ -17,7 +17,7 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     )
   }
 }

@@ -8,7 +8,11 @@ interface ArticleDetailProps {
   article: articleReadType
 }
 const ArticleDetail = ({ article }: ArticleDetailProps) => {
-  if (!article) return <div>Loading...</div>
+  if (!article){
+    return <div>Loading...</div>
+  } else if(JSON.stringify(article) === '{}') {
+    return <div>worng url</div>
+  }
   return (
     <div className="article-page">
       <div className="banner">
@@ -39,23 +43,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const res = {
+    props: {
+      article: {},
+    },
+    revalidate: 1,
+  }
   if (params) {
     const { pid } = params
-    const { data } = await ArticleAPI.get(pid.toString())
-    return {
-      props: {
-        article: data.article,
-      },
-      revalidate: 1,
-    }
-  } else {
-    return {
-      props: {
-        article: {},
-      },
-      revalidate: 1,
+    const { data, status } = await ArticleAPI.get(pid.toString())
+    if(status === 200){
+      res.props.article = data.article
     }
   }
+  return res
 }
 
 export default ArticleDetail

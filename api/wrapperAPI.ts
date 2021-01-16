@@ -3,16 +3,7 @@ import axios, { AxiosResponse } from 'axios'
 import { BASE_URL } from 'utils/constant'
 
 const responseBody = (res: AxiosResponse) => res.data
-const setConfig = () => {
-  const token = localStorage.getItem('jwt')
-  if (token) {
-    return {
-      headers: { Authorization: `Token ${token}` },
-    }
-  } else {
-    return {}
-  }
-}
+const setConfig = () => ({})
 export const requests = {
   get: async (url: string) => {
     try {
