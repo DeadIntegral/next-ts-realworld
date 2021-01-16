@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import RegisterForm from 'components/account/RegisterForm'
 
 const Register = () => {
   return (
@@ -13,6 +14,7 @@ const Register = () => {
                 <a>Have an account?</a>
               </Link>
             </p>
+						<RegisterForm />
           </div>
         </div>
       </div>
