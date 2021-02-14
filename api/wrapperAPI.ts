@@ -1,9 +1,20 @@
 import axios, { AxiosResponse } from 'axios'
 
 import { BASE_URL } from 'utils/constant'
+import { getLocalStorage } from 'utils/mutator'
 
 const responseBody = (res: AxiosResponse) => res.data
-const setConfig = () => ({})
+const setConfig = () => {
+  // window, global 차이
+  try {
+    const { token } = getLocalStorage('user');
+    return {
+      headers: { Authorization: `Token ${token}` },
+    };
+  } catch {
+    return {};
+  }
+}
 export const requests = {
   get: async (url: string) => {
     try {
