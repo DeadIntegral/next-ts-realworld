@@ -1,4 +1,5 @@
 import { requests } from './wrapperAPI'
+import { UserWriteType } from 'types/UserTypes'
 
 const AuthAPI = {
   login: async (email: string, password: string) =>
@@ -9,6 +10,8 @@ const AuthAPI = {
     requests.post('/users', {
       user: { username, email, password },
     }),
+  current: () => requests.get('/user'),
+  setting: (user: UserWriteType) => requests.put('/user', user),
 }
 
 export default AuthAPI
