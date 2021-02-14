@@ -11,3 +11,7 @@ interface localStorageTypes {
 function setLocalStorage({ key, value }: localStorageTypes) {
   localStorage.setItem(key, value)
 }
+export function getLocalStorage(key: string) {
+  const value = localStorage.getItem(key)
+  return value ? JSON.parse(value) : undefined
+}
