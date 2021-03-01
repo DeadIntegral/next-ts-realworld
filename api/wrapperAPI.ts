@@ -1,5 +1,4 @@
 import axios, { AxiosResponse } from 'axios'
-import useSWR from 'swr'
 
 import { getLocalStorage } from 'utils/mutator'
 import { BASE_URL, IS_BROWSER } from 'utils/constant'
@@ -7,7 +6,7 @@ import { BASE_URL, IS_BROWSER } from 'utils/constant'
 const responseBody = (res: AxiosResponse) => res.data
 const setConfig = () => {
   if (IS_BROWSER && window?.localStorage?.user) {
-    const { data } = useSWR('user', getLocalStorage)
+    const data = getLocalStorage('user')
     return {
       headers: { Authorization: `Token ${data.token}` },
     }
