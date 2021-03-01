@@ -25,7 +25,7 @@ const ArticleDetail = ({ article }: ArticleDetailProps) => {
         <div className="row article-content">
           <div className="col-xs-12">
             <div>
-              <p>{article.description}</p>
+              <p>{article.body}</p>
               <ul className="tag-list"></ul>
             </div>
           </div>
