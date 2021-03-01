@@ -20,7 +20,7 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link href="/editor" as="/editor">
+              <Link href="/editor/new" as="/editor/new">
                 <a className="nav-link">
                   <i className="ion-compose" />
                   New Post
