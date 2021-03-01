@@ -32,5 +32,12 @@ export const requests = {
       return error.response
     }
   },
-  put: (url: string, body: object) => axios.put(`${BASE_URL}${url}`, body, setConfig()).then(responseBody),
+  put: async (url: string, body: object) => {
+    try {
+      const response: AxiosResponse = await axios.put(`${BASE_URL}${url}`, body, setConfig())
+      return response
+    } catch (error) {
+      return error.response
+    }
+  },
 }

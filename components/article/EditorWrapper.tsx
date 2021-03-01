@@ -33,11 +33,22 @@ const EditorWrapper = ({ article }: EditorWrapperProps) => {
     setArticleInfo((origin) => ({ ...origin, [name]: value }))
   }
   const router = useRouter()
-  const handleSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    ArticleAPI.create(articleInfo).then(res => {
-      router.push(`/article/${res.article.slug}`)
-    })
+  const handleSubmit = async (e: React.SyntheticEvent) => {
+    e.preventDefault()
+    const slug = router?.query?.pid
+    if (slug) {
+      // update
+      const { data, status } = await ArticleAPI.update(articleInfo, `${slug}`)
+      if (status === 200) {
+        router.push(`/article/${data.article.slug}`)
+      }
+    } else {
+      // create
+      const { data, status } = await ArticleAPI.create(articleInfo)
+      if (status === 200) {
+        router.push(`/article/${data.article.slug}`)
+      }
+    }
   }
   return (
     <div className="editor-page">
@@ -86,9 +97,7 @@ const EditorWrapper = ({ article }: EditorWrapperProps) => {
                 />
                 <div className="tag-list"></div>
               </fieldset>
-              <button className="btn btn-lg pull-xs-right btn-primary">
-                Publish Article
-              </button>
+              <button className="btn btn-lg pull-xs-right btn-primary">Publish Article</button>
             </form>
           </div>
         </div>
