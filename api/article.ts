@@ -6,6 +6,7 @@ const ArticleAPI = {
   all: (page: number, limit: number = 10) => requests.get(`/articles?${limitQuery(limit, page)}`),
   get: (slug: string) => requests.get(`/articles/${encodeURIComponent(slug)}`),
   create: (article: articleWriteType) => requests.post(`/articles`, { ...article }),
+  update: (article: articleWriteType, slug: string) => requests.put(`/articles/${slug}`, { ...article }),
 }
 
 export default ArticleAPI

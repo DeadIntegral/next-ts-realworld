@@ -1,18 +1,17 @@
 import axios, { AxiosResponse } from 'axios'
 
-import { BASE_URL } from 'utils/constant'
 import { getLocalStorage } from 'utils/mutator'
+import { BASE_URL, IS_BROWSER } from 'utils/constant'
 
 const responseBody = (res: AxiosResponse) => res.data
 const setConfig = () => {
-  // window, global 차이
-  try {
-    const { token } = getLocalStorage('user');
+  if (IS_BROWSER && window?.localStorage?.user) {
+    const data = getLocalStorage('user')
     return {
-      headers: { Authorization: `Token ${token}` },
-    };
-  } catch {
-    return {};
+      headers: { Authorization: `Token ${data.token}` },
+    }
+  } else {
+    return {}
   }
 }
 export const requests = {
@@ -33,5 +32,12 @@ export const requests = {
       return error.response
     }
   },
-  put: (url: string, body: object) => axios.put(`${BASE_URL}${url}`, body, setConfig()).then(responseBody),
+  put: async (url: string, body: object) => {
+    try {
+      const response: AxiosResponse = await axios.put(`${BASE_URL}${url}`, body, setConfig())
+      return response
+    } catch (error) {
+      return error.response
+    }
+  },
 }

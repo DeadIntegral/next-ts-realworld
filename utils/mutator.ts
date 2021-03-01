@@ -1,4 +1,5 @@
 import { mutate } from 'swr'
+import { IS_BROWSER } from 'utils/constant'
 
 export const mutator = (data: object, key: string) => {
   mutate(key, data)
@@ -12,6 +13,10 @@ function setLocalStorage({ key, value }: localStorageTypes) {
   localStorage.setItem(key, value)
 }
 export function getLocalStorage(key: string) {
-  const value = localStorage.getItem(key)
-  return value ? JSON.parse(value) : undefined
+  if(IS_BROWSER){
+    const value = localStorage.getItem(key)
+    return value ? JSON.parse(value) : undefined
+  } else {
+    return {}
+  }
 }
