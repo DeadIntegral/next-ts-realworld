@@ -9,3 +9,10 @@ export interface articleReadType {
   tagList: []
   author: AuthorType
 }
+
+export interface articleWriteType {
+  title: string
+  description: string
+  body: string
+  tagList: string
+}
